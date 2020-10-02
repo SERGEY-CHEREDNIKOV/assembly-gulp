@@ -26,5 +26,9 @@
     "gulp-webp": "^4.0.1",
     "posthtml-include": "^1.4.3"
   },
-  "browserslist": "> 0.1%"
+  "browserslist": "> 0.1%",
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "node-normalize-scss": "^8.1.2"
+  }
 }

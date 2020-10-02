@@ -16,6 +16,7 @@ const plumber = require("gulp-plumber");
 const imagemin = require("gulp-imagemin");
 const webp = require("gulp-webp");
 const del = require("del");
+const concat = require('gulp-concat');
 const browsersync = require("browser-sync").create();
 
 /* Paths */
@@ -69,6 +70,15 @@ function html() {
         .pipe(posthtml([include()]))        
         .pipe(dest(path.build.html))
         .pipe(browsersync.stream());
+}
+
+function libraries(){
+    return gulp.src([
+        'node_modules/normalize.css/normalize.css',
+    ])
+    .pipe(concat('_normalize.scss'))
+    .pipe(gulp.dest('source/scss/'))
+    .pipe(browsersync.stream());
 }
 
 function css() {
@@ -153,6 +163,7 @@ const watch = gulp.parallel(build, watchFiles, browserSync, browserSyncReload);
 
 /* Exports Tasks */
 exports.html = html;
+exports.libraries = libraries;
 exports.css = css;
 exports.js = js;
 exports.images = images;
